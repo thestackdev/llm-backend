@@ -74,7 +74,7 @@ def upload():
             namespace = data['namespace']
             raw_text = data['raw_text']
 
-            collection = client.delete_collection(namespace)
+            client.delete_collection(namespace)
 
             client.recreate_collection(
                 collection_name=namespace,
@@ -95,5 +95,7 @@ def upload():
     except Exception as e:
         return jsonify({'message': 'Error', 'error': str(e)}), 500
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
