@@ -94,3 +94,6 @@ def upload():
 
     except Exception as e:
         return jsonify({'message': 'Error', 'error': str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True)
